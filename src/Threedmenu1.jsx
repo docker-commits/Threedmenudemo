@@ -14,6 +14,8 @@ const menuItems = [
   {
     id: 1,
     name: "Crispy Calamari",
+    model:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 899,
     description: "Lightly battered squid rings with aioli",
     category: "Starters",
@@ -22,6 +24,8 @@ const menuItems = [
   {
     id: 2,
     name: "Bruschetta",
+    model:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 699,
     description: "Toasted bread topped with tomatoes, garlic, and basil",
     category: "Starters",
@@ -29,6 +33,8 @@ const menuItems = [
   {
     id: 3,
     name: "Grilled Salmon",
+    model:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 1899,
     description: "Fresh salmon fillet with lemon butter sauce",
     category: "Main Course",
@@ -37,6 +43,8 @@ const menuItems = [
   {
     id: 4,
     name: "Beef Stroganoff",
+    model:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 1699,
     description: "Tender beef in a creamy mushroom sauce over noodles",
     category: "Main Course",
@@ -44,6 +52,8 @@ const menuItems = [
   {
     id: 5,
     name: "Chocolate Lava Cake",
+    model:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 799,
     description: "Warm chocolate cake with a gooey center",
     category: "Desserts",
@@ -111,7 +121,7 @@ const ThreeDMenu1 = () => {
             <CardContent className="p-4">
               <model-viewer
                 poster="https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/11-03-2024-06-39-11_Salad.png"
-                src="https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb"
+                src={item.model}
                 ar
                 id="lazy-load"
                 ar-modes="scene-viewer webxr quick-look"
