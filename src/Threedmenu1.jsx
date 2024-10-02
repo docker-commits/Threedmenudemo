@@ -66,7 +66,7 @@ const ThreeDMenu1 = () => {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filters = ["All", "Recommended", "Starters", "Main Course", "Desserts"];
-  const arButtonRef = useRef({});
+  const arButtonRefs = useRef({});
 
   const handleARButtonClick = (id) => {
     if (arButtonRef.current[id]) {
