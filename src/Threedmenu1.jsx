@@ -42,7 +42,7 @@ const menuItems = [
   },
   {
     id: 4,
-    name: "Beef Stroganoff",
+    name: "Reef Stroganoff",
     model:
       "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 1699,
@@ -130,6 +130,7 @@ const ThreeDMenu1 = () => {
                 shadow-intensity="1"
                 style={{
                   width: "100%",
+                  height: "100%"
                 }}
               >
                 {/* <div className="progress-bar hide" slot="progress-bar">
