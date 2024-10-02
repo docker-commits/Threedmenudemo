@@ -152,7 +152,7 @@ const ThreeDMenu1 = () => {
           <Card key={item.id} className="w-full">
             <CardContent className="p-4">
               {toDItem[item.id] ? (
-                <div className="flex justify-center	">
+                <div className="h-[150px] flex justify-center items-center">
                   <img
                     src={item.poster}
                     alt={item.name}
