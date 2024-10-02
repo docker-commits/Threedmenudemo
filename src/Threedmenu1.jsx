@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Search, View } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,8 @@ const menuItems = [
   {
     id: 1,
     name: "Crispy Calamari",
+    poster:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/11-03-2024-06-39-11_Salad.png",
     model:
       "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 899,
@@ -24,6 +26,8 @@ const menuItems = [
   {
     id: 2,
     name: "Bruschetta",
+    poster:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/29-04-2024-03-14-26_sushi_platter.png",
     model:
       "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/29-04-2024-03-14-29_Sushi_Platter.glb",
     price: 699,
@@ -33,6 +37,8 @@ const menuItems = [
   {
     id: 3,
     name: "Grilled Salmon",
+    poster:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/11-03-2024-06-39-11_Salad.png",
     model:
       "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 1899,
@@ -42,7 +48,9 @@ const menuItems = [
   },
   {
     id: 4,
-    name: "Reef Stroganoff",
+    name: "Beef Stroganoff",
+    poster:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/11-03-2024-06-39-11_Salad.png",
     model:
       "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 1699,
@@ -52,6 +60,8 @@ const menuItems = [
   {
     id: 5,
     name: "Chocolate Lava Cake",
+    poster:
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/11-03-2024-06-39-11_Salad.png",
     model:
       "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
     price: 799,
@@ -64,14 +74,36 @@ const menuItems = [
 const ThreeDMenu1 = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
-
+  const [toDItem, setToDItem] = useState({});
   const filters = ["All", "Recommended", "Starters", "Main Course", "Desserts"];
-  const arButtonRefs = useRef({});
+  const arButtonRefs = useRef([]);
 
   const handleARButtonClick = (id) => {
-    if (arButtonRef.current[id]) {
-      arButtonRefs.current[id].click();
-    }
+    // console.log(arButtonRefs.current);
+    console.log(id);
+    setToDItem((prevState) => ({
+      ...prevState,
+      [id]: false,
+    }));
+    setTimeout(() => {
+      if (arButtonRefs.current[id]) {
+        arButtonRefs.current[id].click();
+        console.log(arButtonRefs.current[id].click());
+      }
+    }, 100);
+  };
+  useEffect(() => {
+    const initialState = {};
+    filteredItems.forEach((item) => {
+      initialState[item.id] = true;
+    });
+    setToDItem(initialState);
+  }, []);
+  const handleShow3d = (itemId) => {
+    setToDItem((prevState) => ({
+      ...prevState,
+      [itemId]: !prevState[itemId],
+    }));
   };
   const filteredItems = useMemo(() => {
     return menuItems.filter((item) => {
@@ -102,12 +134,12 @@ const ThreeDMenu1 = () => {
         />
       </div>
 
-      <div className="flex flex-wrap overflow-x-auto mb-4 pb-2 ">
+      <div className="flex flex-wrap overflow-x-auto mb-4 pb-2 gap-2">
         {filters.map((filter) => (
           <Button
             key={filter}
             variant={activeFilter === filter ? "default" : "outline"}
-            className="mr-2 mb-4 whitespace-nowrap scroll-mx-1"
+            className="mr-2 whitespace-nowrap scroll-mx-1"
             onClick={() => setActiveFilter(filter)}
           >
             {filter}
@@ -119,67 +151,62 @@ const ThreeDMenu1 = () => {
         {filteredItems.map((item) => (
           <Card key={item.id} className="w-full">
             <CardContent className="p-4">
-              <model-viewer
-                poster="https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/11-03-2024-06-39-11_Salad.png"
-                src={item.model}
-                ar
-                id="lazy-load"
-                ar-modes="scene-viewer webxr quick-look"
-                camera-controls
-                tone-mapping="neutral"
-                shadow-intensity="1"
-                style={{
-                  width: "100%",
-                }}
-              >
-                 <div className="progress-bar hide" slot="progress-bar">
-                  <div className="update-bar"></div>
+              {toDItem[item.id] ? (
+                <div className="flex justify-center	">
+                  <img
+                    src={item.poster}
+                    alt={item.name}
+                    className="w-[100px]"
+                  />
                 </div>
-{/*               <div
-                  className="absolute inset-0  bg-no-repeat "
-                  slot="poster"
+              ) : (
+                <model-viewer
+                  src={item.model}
+                  ar
+                  ar-modes="scene-viewer webxr quick-look"
+                  camera-controls
+                  tone-mapping="neutral"
+                  shadow-intensity="1"
                   style={{
-                    backgroundImage:
-                      'url("https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/thumbnails/11-03-2024-06-39-11_Salad.png")',
+                    width: "100%",
                   }}
-                ></div>
-                <button
-                  id="button-load"
-                  slot="poster"
-                  onClick={() =>
-                    document.querySelector("#lazy-load").dismissPoster()
-                  }
                 >
-                  Load 3D Model
-                </button> */}
-                <button
-                  className="align-middle block"
-                  slot="ar-button"
-                  id="ar-button"
-                  ref={(el) => (arButtonRefs.current[item.id] = el)}
-                ></button>
-              </model-viewer>
-              <h3 className="font-bold">
-                {item.name} {item.recommended && "⭐"}
-              </h3>
-              <p className="text-sm text-gray-600">{item.description}</p>
-              <p className="font-bold mt-2">${(item.price / 100).toFixed(2)}</p>
+                  <button
+                    className="align-middle hidden "
+                    slot="ar-button"
+                    id="ar-button"
+                    ref={(el) => (arButtonRefs.current[item.id] = el)}
+                  ></button>
+                </model-viewer>
+              )}
+              <div className="flex justify-between">
+                <div>
+                  <h3 className="font-bold">
+                    {item.name} {item.recommended && "⭐"}
+                  </h3>
+                  <p className="text-sm text-gray-600">{item.description}</p>
+                </div>
+                <p className="font-bold mt-2">
+                  ${(item.price / 100).toFixed(2)}
+                </p>
+              </div>
             </CardContent>
             <CardFooter className="flex justify-center space-x-1 ">
               <Button
                 variant="outline"
                 className="mt-2 flex-1 text-sm sm:text-base"
-                onClick={() => handleARButtonClick(item.id)}
+                onClick={() => {
+                  handleARButtonClick(item.id);
+                }}
               >
                 <View className="mr-2 h-4 w-4" /> View on your table
               </Button>
               <Button
                 variant="outline"
                 className="mt-2 flex-2 text-sm sm:text-base"
-                onClick={() => ({})}
+                onClick={() => handleShow3d(item.id)}
               >
-                {/* {showModel ? "Show Image" : "Show 3D"} */}
-                Show 3D
+                {toDItem[item.id] ? "Show 3D" : "Show Image"}
               </Button>
             </CardFooter>
           </Card>
