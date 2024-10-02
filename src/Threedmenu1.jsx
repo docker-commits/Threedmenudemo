@@ -102,12 +102,12 @@ const ThreeDMenu1 = () => {
         />
       </div>
 
-      <div className="flex flex-wrap overflow-x-auto mb-4 pb-2">
+      <div className="flex flex-wrap overflow-x-auto mb-4 pb-2 ">
         {filters.map((filter) => (
           <Button
             key={filter}
             variant={activeFilter === filter ? "default" : "outline"}
-            className="mr-2 whitespace-nowrap scroll-mx-1"
+            className="mr-2 mb-4 whitespace-nowrap scroll-mx-1"
             onClick={() => setActiveFilter(filter)}
           >
             {filter}
