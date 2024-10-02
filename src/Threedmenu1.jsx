@@ -180,7 +180,7 @@ const ThreeDMenu1 = () => {
                 </model-viewer>
               )}
               <div className="flex justify-between">
-                <div>
+                <div className="text-left">
                   <h3 className="font-bold">
                     {item.name} {item.recommended && "⭐"}
                   </h3>
