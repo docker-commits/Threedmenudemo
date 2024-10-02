@@ -194,7 +194,7 @@ const ThreeDMenu1 = () => {
             <CardFooter className="flex justify-center space-x-1 ">
               <Button
                 variant="outline"
-                className="mt-2 flex-1 text-sm sm:text-base"
+                className="mt-2 flex-2 text-[0.575rem] w-auo md:text-sm md:w-auto"
                 onClick={() => {
                   handleARButtonClick(item.id);
                 }}
@@ -203,7 +203,7 @@ const ThreeDMenu1 = () => {
               </Button>
               <Button
                 variant="outline"
-                className="mt-2 flex-2 text-sm sm:text-base"
+                className="mt-2 flex-2 text-[0.575rem] w-auo md:text-sm md:w-auto"
                 onClick={() => handleShow3d(item.id)}
               >
                 {toDItem[item.id] ? "Show 3D" : "Show Image"}
