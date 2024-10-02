@@ -130,13 +130,12 @@ const ThreeDMenu1 = () => {
                 shadow-intensity="1"
                 style={{
                   width: "100%",
-                  height: "100%"
                 }}
               >
-                {/* <div className="progress-bar hide" slot="progress-bar">
+                 <div className="progress-bar hide" slot="progress-bar">
                   <div className="update-bar"></div>
-                </div> */}
-                {/* <div
+                </div>
+              <div
                   className="absolute inset-0  bg-no-repeat "
                   slot="poster"
                   style={{
@@ -152,7 +151,7 @@ const ThreeDMenu1 = () => {
                   }
                 >
                   Load 3D Model
-                </button> */}
+                </button>
                 <button
                   className="align-middle block"
                   slot="ar-button"
