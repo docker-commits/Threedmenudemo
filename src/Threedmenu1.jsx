@@ -25,7 +25,7 @@ const menuItems = [
     id: 2,
     name: "Bruschetta",
     model:
-      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/11-03-2024-06-39-11_Rustic_Italian_Salad.glb",
+      "https://snc-apac-1.sgp1.cdn.digitaloceanspaces.com/5f5ed230-8264-48f1-9190-c1a9b112280a/assets/3d/glb/29-04-2024-03-14-29_Sushi_Platter.glb",
     price: 699,
     description: "Toasted bread topped with tomatoes, garlic, and basil",
     category: "Starters",
