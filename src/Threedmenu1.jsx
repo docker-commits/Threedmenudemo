@@ -68,9 +68,9 @@ const ThreeDMenu1 = () => {
   const filters = ["All", "Recommended", "Starters", "Main Course", "Desserts"];
   const arButtonRef = useRef({});
 
-  const handleARButtonClick = () => {
-    if (arButtonRef.current) {
-      arButtonRef.current.click();
+  const handleARButtonClick = (id) => {
+    if (arButtonRef.current[id]) {
+      arButtonRefs.current[id].click();
     }
   };
   const filteredItems = useMemo(() => {
@@ -135,7 +135,7 @@ const ThreeDMenu1 = () => {
                  <div className="progress-bar hide" slot="progress-bar">
                   <div className="update-bar"></div>
                 </div>
-              <div
+{/*               <div
                   className="absolute inset-0  bg-no-repeat "
                   slot="poster"
                   style={{
@@ -151,12 +151,12 @@ const ThreeDMenu1 = () => {
                   }
                 >
                   Load 3D Model
-                </button>
+                </button> */}
                 <button
                   className="align-middle block"
                   slot="ar-button"
                   id="ar-button"
-                  ref={arButtonRef}
+                  ref={(el) => (arButtonRefs.current[item.id] = el)}
                 ></button>
               </model-viewer>
               <h3 className="font-bold">
@@ -169,7 +169,7 @@ const ThreeDMenu1 = () => {
               <Button
                 variant="outline"
                 className="mt-2 flex-1 text-sm sm:text-base"
-                onClick={handleARButtonClick}
+                onClick={() => handleARButtonClick(item.id)}
               >
                 <View className="mr-2 h-4 w-4" /> View on your table
               </Button>
